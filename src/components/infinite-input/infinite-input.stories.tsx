@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { InfiniteInput } from "./infinite-input";
-import { IField } from "../InfiniteField";
+import { IField } from "../Infinite-field";
 
 export default {
   title: "ReactComponentLibrary/InfinteInput",

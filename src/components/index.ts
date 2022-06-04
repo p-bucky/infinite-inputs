@@ -1,2 +1,2 @@
-export {CInput} from "./InfiniteField"
+export {IField} from "./Infinite-field"
 export {InfiniteInput} from "./infinite-input"

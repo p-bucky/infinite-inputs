@@ -1,1 +1,1 @@
-export {CInput, InfiniteInput} from "./components"
+export {IField, InfiniteInput} from "./components"
