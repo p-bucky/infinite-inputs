@@ -52,7 +52,7 @@ export const InfiniteInput = ({
   const form = () => {
     return (
       <>
-        {(values || []).map((item: any, i: any) => {
+        {(values || []).map((item: { [key: string]: string }, i: number) => {
           return (
             <div
               id={
