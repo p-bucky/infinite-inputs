@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect, ReactNode, CSSProperties } from "react";
 import { getFieldsRow } from "../helper";
 
 const INFINITE_INPUT_WRAPPER_CONSTANT = "infinite-input-wrapper";
@@ -7,12 +7,26 @@ export interface InfiniteInputProps {
   fieldsValue: Array<{ [key: string]: string }>;
   onChange: Function;
   children: ReactNode;
+  classes?: {
+    addbtnClass: string;
+    removebtnClass: string;
+    inputClass: string;
+    containerClass: string;
+  };
+  styles?: {
+    addbtnStyle: CSSProperties | undefined;
+    removebtnStyle: CSSProperties | undefined;
+    inputStyle: CSSProperties | undefined;
+    containerStyle: CSSProperties | undefined;
+  };
 }
 
 export const InfiniteInput = ({
   fieldsValue,
   onChange,
   children,
+  classes,
+  styles,
 }: InfiniteInputProps) => {
   const [values, setValues] = useState<Array<{ [key: string]: string }>>([]);
 
@@ -55,6 +69,8 @@ export const InfiniteInput = ({
         {(values || []).map((item: { [key: string]: string }, i: number) => {
           return (
             <div
+              className={classes?.containerClass}
+              style={styles?.containerStyle}
               id={
                 i === 0
                   ? INFINITE_INPUT_WRAPPER_CONSTANT
@@ -70,12 +86,20 @@ export const InfiniteInput = ({
                         onChangeCallback: handleOnChangeFieldValue,
                         rowObj: item,
                         index: i,
+                        styles,
+                        classes,
                       })}
                     </>
                   );
                 }
               })}
-              <button onClick={() => handleRemoveRow(i)}>Remove</button>
+              <button
+                className={classes?.removebtnClass}
+                style={styles?.removebtnStyle}
+                onClick={() => handleRemoveRow(i)}
+              >
+                Remove
+              </button>
             </div>
           );
         })}
@@ -86,7 +110,13 @@ export const InfiniteInput = ({
   return (
     <>
       {form()}
-      <button onClick={handleAddRow}>Add</button>
+      <button
+        className={classes?.addbtnClass}
+        style={styles?.addbtnStyle}
+        onClick={handleAddRow}
+      >
+        Add
+      </button>
     </>
   );
 };
